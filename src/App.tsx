@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { Banner } from './components/Banner';
-import { ProductInterface } from './interfaces/ProductInterface';
+import { ProductInterface } from './interfaces/Interfaces';
 import { ProductPage } from './components/ProductPage';
 
 function App() {
@@ -11,6 +11,7 @@ function App() {
   const [newProduct, setNewProduct] = useState({
     id: 0,
     name: "",
+    img:"",
     category: "",
     quantity: 0,
     price: 0,

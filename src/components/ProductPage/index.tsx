@@ -1,6 +1,15 @@
 import { useState } from "react"
 import "./productPage.css"
-import { ProductInterface } from "../../interfaces/ProductInterface"
+import { ProductInterface } from "../../interfaces/Interfaces"
+import { DropDownList } from "../DropDownList";
+
+const productCategories: String[] = [
+    "Electronics",
+    "Clothing",
+    "Books",
+    "Home & Kitchen",
+    "Sports & Outdoors",
+  ];
 
 interface ProductPageProps {
     addingNewProduct: (product: ProductInterface) => void;
@@ -9,6 +18,7 @@ interface ProductPageProps {
 
 export const ProductPage = (props: ProductPageProps) => {
     const [name, setName] = useState("")
+    const [img, setImg] = useState("")
     const [category, setCategory] = useState("")
     const [price, setPrice] = useState(0.0)
     const [quantity, setQuantity] = useState(0)
@@ -16,7 +26,7 @@ export const ProductPage = (props: ProductPageProps) => {
     const [date, setDate] = useState(new Date())
 
     const [statusForm, setStatusForm] = useState<boolean>()
-    const [displayForm, setdisplayForm] = useState("")
+    const [displayForm, setdisplayForm] = useState("none")
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
@@ -24,6 +34,7 @@ export const ProductPage = (props: ProductPageProps) => {
         const product: ProductInterface = {
             "id": props.productId,
             "name": name,
+            "img": img,
             "category": category,
             "price": price,
             "quantity": quantity,
@@ -50,19 +61,30 @@ export const ProductPage = (props: ProductPageProps) => {
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         placeholder="Product Name"
+                        required
+                        
                     />
                     <input
                         type="text"
-                        value={category}
-                        onChange={(e) => setCategory(e.target.value)}
-                        placeholder="Category"
+                        value={img}
+                        onChange={(e) => setImg(e.target.value)}
+                        placeholder="Product Image URL"
+                        required
                     />
+
+                    <DropDownList
+                        itens = {productCategories}
+                        value={category}
+                        updateValue={(value:string) => setCategory(value)}
+                    />
+
                     <input
                         type="number"
                         value={price}
                         onChange={(e) => setPrice(parseFloat(e.target.value))}
                         placeholder="Price"
                          min="0" max="999999" step="0.01"
+                         required
                     />
                     <input
                         type="number"
@@ -70,6 +92,7 @@ export const ProductPage = (props: ProductPageProps) => {
                         onChange={(e) => setQuantity(parseInt(e.target.value))}
                         placeholder="Quantity"
                         min="0"
+                        required
                     />
                     <input
                         type="number"
@@ -77,11 +100,13 @@ export const ProductPage = (props: ProductPageProps) => {
                         onChange={(e) => setRating(parseInt(e.target.value))}
                         placeholder="Rating"
                         min="0" max="5"
+                        required
                     />
                     <input
                         type="date"
                         value={date.toISOString().split("T")[0]}
                         onChange={(e) => setDate(new Date(e.target.value))}
+                        required
                     />
                     <button type="submit">Add Product</button>
                 </form>
