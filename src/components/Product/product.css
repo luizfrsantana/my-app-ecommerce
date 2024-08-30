@@ -1,0 +1,35 @@
+.product {
+    display: inline-block;
+    width: 280px;
+}
+
+.product .header {
+    background-color:  #efa040;
+    border-radius: 10px 10px 0px 0px;
+}
+.product img {
+    width: 250px;
+}
+
+.product .footer {
+    background: #e9f3b08e;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.08);
+    border-radius: 0px 0px 10px 10px;
+    padding-top: 15px;
+    padding-bottom: 5px;
+}
+
+.product .footer h4 {
+    color: #6278F7;
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.product .footer h5 {
+    font-size: 18px;
+    line-height: 22px;
+    color: #212121;
+    padding: 0 8px;
+}

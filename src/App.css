@@ -36,3 +36,18 @@
     transform: rotate(360deg);
   }
 }
+
+.content {
+  display: flex;
+}
+
+.sidebar {
+  width: 200px;
+  padding: 20px;
+  border-right: 1px solid #ccc;
+}
+
+.productlist {
+  flex: 1;
+  padding: 20px;
+}

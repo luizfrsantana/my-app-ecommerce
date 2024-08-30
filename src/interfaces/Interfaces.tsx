@@ -8,3 +8,9 @@ export interface ProductInterface {
     rating: number,
     date: Date
 }
+
+
+export interface SidebarProps {
+    onFilterChange: (filter: string, value: string | number) => void;
+    onSortChange: (sortBy: string, order: 'asc' | 'desc') => void;
+  }
