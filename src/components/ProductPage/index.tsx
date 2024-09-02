@@ -14,7 +14,6 @@ const productCategories: String[] = [
 interface ProductPageProps {
     addingNewProduct: (product: ProductInterface) => void;
     productId: number;
-    addToCart: (product: ProductInterface) => void;
 }
 
 export const ProductPage = (props: ProductPageProps) => {

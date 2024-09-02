@@ -9,6 +9,12 @@ export interface ProductInterface {
     date: Date
 }
 
+export interface ProductProps extends ProductInterface {
+    isInCart: boolean;
+    onAddToCart: (product: ProductInterface) => void;
+    onRemoveFromCart: (productId: number) => void;
+    isCartPage: boolean;
+  }
 
 export interface SidebarProps {
     onFilterChange: (filter: string, value: string | number) => void;

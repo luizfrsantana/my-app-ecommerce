@@ -14,6 +14,7 @@ function App() {
   const [products, setProducts] = useState([] as ProductInterface[]);
   const [cart, setCart] = useState([] as ProductInterface[]);
   const [filteredProducts, setFilteredProducts] = useState([] as ProductInterface[]);
+  const [currentPage, setCurrentPage] = useState("");
 
   const handleProductPage = () => {
     console.log("Product Page")
@@ -24,11 +25,13 @@ function App() {
   const handleCartPage = () => {
     console.log("Cart")
     setFilteredProducts(cart)
+    setCurrentPage("cart")
   }
 
   const handleHomePage = () => {
     console.log("Home")
     setFilteredProducts([])
+    setCurrentPage("ProductPage")
   }
 
   const addingNewProduct = (product: ProductInterface) => {
@@ -68,10 +71,12 @@ function App() {
     setCart(cart.filter(product => product.id !== productId));
   };
 
+  const isProductInCart = (productId: number) => {
+    return cart.some((product) => product.id === productId);
+  };
 
-  useEffect(() => {
-    console.log(filteredProducts);
-  }, [filteredProducts]);
+
+  useEffect(() => {}, [filteredProducts]);
 
   return (
     <Router> {/* Envolva tudo dentro do Router */}
@@ -96,12 +101,11 @@ function App() {
                     }
                     }
                     productId={products.length + 1}
-                    addToCart={addToCart}
                   />
                 }
               />
               < Route path="/" element={<Home />} />
-              < Route path="/cart" element={<Home />} />
+              
             </Routes>
               {filteredProducts.map((product) => (
                 <Product
@@ -114,6 +118,10 @@ function App() {
                   price={product.price}
                   rating={product.rating}
                   date={product.date}
+                  isInCart={isProductInCart(product.id)}
+                  onAddToCart={addToCart}
+                  onRemoveFromCart={removeFromCart}
+                  isCartPage={currentPage === "cart"}
                 />
               ))}
             
