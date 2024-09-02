@@ -1,10 +1,35 @@
 import React from 'react';
 import "./sidebar.css"
 import { SidebarProps } from '../../interfaces/Interfaces';
+import { Link,useNavigate } from 'react-router-dom';
 
-export const Sidebar: React.FC<SidebarProps> = ({ onFilterChange, onSortChange }) => {
+
+
+export const Sidebar: React.FC<SidebarProps> = ({ onFilterChange, onSortChange, onHomePage, onProductPage, onCartPage  }) => {
+  const navigate = useNavigate();
+
+  const handleHomeClick = () => {
+    onHomePage();
+    navigate('/');
+  };
+  
+  const handleProductClick = () => {
+    onProductPage();
+    navigate('/product-page');
+  };
+
+  const handleCartClick = () => {
+    onCartPage();
+    navigate('/cart');
+  };
+  
   return (
     <div className="sidebar">
+
+      <span className="link-like" onClick={handleHomeClick}>Home</span><br />
+      <span className="link-like" onClick={handleProductClick}>Product</span><br />
+      <span className="link-like" onClick={handleCartClick}>Cart</span><br />
+
       <h3>Search Bar</h3>
       <input
         type="text"

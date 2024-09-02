@@ -1,0 +1,10 @@
+.link-like {
+    color: blue; 
+    text-decoration: underline; 
+    cursor: pointer; 
+  }
+
+  .link-like:hover {
+    color: darkblue; 
+    text-decoration: none; 
+  }

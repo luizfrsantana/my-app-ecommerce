@@ -13,4 +13,7 @@ export interface ProductInterface {
 export interface SidebarProps {
     onFilterChange: (filter: string, value: string | number) => void;
     onSortChange: (sortBy: string, order: 'asc' | 'desc') => void;
+    onHomePage: () => void;
+    onProductPage: () => void;
+    onCartPage: () => void;
   }
