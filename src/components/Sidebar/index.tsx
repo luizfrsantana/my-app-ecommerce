@@ -38,7 +38,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ onFilterChange, onSortChange, 
       />
 
       <h3>Filter by:</h3>
-      <label htmlFor='filterCategory'>Category:</label>
+      <label htmlFor='filterCategory'>Category: </label>
       <input
         type="text"
         name="filterCategory"
@@ -49,20 +49,23 @@ export const Sidebar: React.FC<SidebarProps> = ({ onFilterChange, onSortChange, 
       <input
         type="number"
         name="filterPrice"
+        min="0" step="0.01"
         onChange={(e) => onFilterChange('price', Number(e.target.value))}
       />
 
-      <label htmlFor="filterQuantity">Quantity:</label>
+      <label htmlFor="filterQuantity">Quantity: </label>
       <input
         type="number"
         name="filterQuantity"
+        min="0" 
         onChange={(e) => onFilterChange('quantity', Number(e.target.value))}
       />
 
-      <label htmlFor="filterRating">Rating/Stars:</label>
+      <label htmlFor="filterRating">Rating/Stars: </label>
       <input
         type="number"
         name="filterRating"
+        min="0" max="5"
         onChange={(e) => onFilterChange('rating', Number(e.target.value))}
       />
 

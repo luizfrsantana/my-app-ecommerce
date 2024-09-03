@@ -33,3 +33,11 @@
     color: #212121;
     padding: 0 8px;
 }
+
+
+.product .star {
+    display: inline-block;
+    width: 20px; 
+    height: 20px; 
+    margin-right: 2px;
+}

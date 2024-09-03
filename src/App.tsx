@@ -19,6 +19,7 @@ function App() {
   const handleProductPage = () => {
     console.log("Product Page")
     setFilteredProducts(products)
+    setCurrentPage("ProductPage")
 
   }
 
@@ -31,9 +32,10 @@ function App() {
   const handleHomePage = () => {
     console.log("Home")
     setFilteredProducts([])
-    setCurrentPage("ProductPage")
+    setCurrentPage("Home")
   }
 
+  
   const addingNewProduct = (product: ProductInterface) => {
     console.log(product);
     const updatedProducts = [...products, product];
@@ -42,7 +44,8 @@ function App() {
   };
 
   const handleFilterChange = (filter: string, value: string | number) => {
-    const filtered = products.filter((product) =>
+    const itemsToFilter = currentPage === "cart" ? cart : products;
+    const filtered = itemsToFilter.filter((product) =>
       String(product[filter as keyof ProductInterface])
         .toLowerCase()
         .includes(String(value).toLowerCase())
