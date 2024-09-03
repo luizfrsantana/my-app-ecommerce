@@ -77,37 +77,45 @@ export const ProductPage = (props: ProductPageProps) => {
                         value={category}
                         updateValue={(value:string) => setCategory(value)}
                     />
-
+                    <label htmlFor="price"> Price: </label>
                     <input
                         type="number"
+                        name="price"
                         value={price}
                         onChange={(e) => setPrice(parseFloat(e.target.value))}
                         placeholder="Price"
                          min="0" max="999999" step="0.01"
                          required
                     />
+                    <label htmlFor="quantidy"> Quantity: </label>
                     <input
                         type="number"
+                        name="quantidy"
                         value={quantity}
                         onChange={(e) => setQuantity(parseInt(e.target.value))}
                         placeholder="Quantity"
                         min="0"
                         required
                     />
+                    <label htmlFor="rating"> Rating: </label>
                     <input
                         type="number"
+                        name="rating"
                         value={rating}
                         onChange={(e) => setRating(parseInt(e.target.value))}
                         placeholder="Rating"
                         min="0" max="5"
                         required
                     />
+                    <label htmlFor="dateListed"> Date listed: </label> 
                     <input
                         type="date"
+                        name="dateListed"
                         value={date.toISOString().split("T")[0]}
                         onChange={(e) => setDate(new Date(e.target.value))}
                         required
                     />
+                    <br />
                     <button type="submit">Add Product</button>
                 </form>
             </section>
