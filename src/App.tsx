@@ -13,24 +13,23 @@ function App() {
 
   const [products, setProducts] = useState([] as ProductInterface[]);
   const [cart, setCart] = useState([] as ProductInterface[]);
+  const [cartTotalValue, setcartTotalValue] = useState(0);
   const [filteredProducts, setFilteredProducts] = useState([] as ProductInterface[]);
   const [currentPage, setCurrentPage] = useState("");
 
   const handleProductPage = () => {
-    console.log("Product Page")
     setFilteredProducts(products)
     setCurrentPage("ProductPage")
 
   }
 
   const handleCartPage = () => {
-    console.log("Cart")
+    console.log({cartTotalValue})
     setFilteredProducts(cart)
     setCurrentPage("cart")
   }
 
   const handleHomePage = () => {
-    console.log("Home")
     setFilteredProducts([])
     setCurrentPage("Home")
   }
@@ -66,12 +65,14 @@ function App() {
     setFilteredProducts(sorted);
   };
 
-  const addToCart = (product: ProductInterface) => {
+  const addToCart = (product: ProductInterface, price: number) => {
     setCart([...cart, product]);
+    setcartTotalValue(cartTotalValue + price)
   };
 
-  const removeFromCart = (productId: number) => {
+  const removeFromCart = (productId: number, price: number) => {
     setCart(cart.filter(product => product.id !== productId));
+    setcartTotalValue(cartTotalValue - price)
   };
 
   const isProductInCart = (productId: number) => {
@@ -122,12 +123,12 @@ function App() {
                   rating={product.rating}
                   date={product.date}
                   isInCart={isProductInCart(product.id)}
-                  onAddToCart={addToCart}
-                  onRemoveFromCart={removeFromCart}
+                  onAddToCart={() => addToCart(product, product.price)}
+                  onRemoveFromCart={() => removeFromCart(product.id, product.price)}
                   isCartPage={currentPage === "cart"}
                 />
               ))}
-            
+            {currentPage === "cart" && <h1>Cart Total Value: {cartTotalValue}</h1>}
           </div>
         </div>
       </div>
